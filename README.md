@@ -29,3 +29,9 @@ cd frontend
 npm install
 npm run dev
 ```
+
+## Testowanie commitow
+### Filip
+```
+Dodaje commit o zmianie w README.md
+```
