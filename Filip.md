@@ -1,0 +1,6 @@
+\#Filip.md
+
+\##spis akcji
+
+
+
