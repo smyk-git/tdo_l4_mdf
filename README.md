@@ -35,3 +35,11 @@ npm run dev
 ```
 Dodaje commit o zmianie w README.md
 ```
+## Lista Todo 📨 
+### - Dodanie ponizszych pól do tabelki "items"
+```
+genre - gatunek filmu
+director - rezyser filmu
+year - rok premiery filmu
+```
+### - Dodanie stron CRUD
