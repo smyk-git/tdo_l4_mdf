@@ -30,8 +30,9 @@ function App() {
   };
 
   return (
-    <div style={{ maxWidth: 600, margin: "2rem auto", fontFamily: "sans-serif" }}>
-      <h1>FastAPI + React + Postgres</h1>
+    <div className="mainbody">
+      <div className="header" style={{ fontFamily: "sans-serif"}}>
+      <h1>FAREPO</h1>
 
       <form onSubmit={handleSubmit} style={{ marginBottom: "1.5rem" }}>
         <input
@@ -43,12 +44,15 @@ function App() {
         />
         <button type="submit">Dodaj</button>
       </form>
-
       <ul>
         {items.map((item) => (
           <li key={item.id}>{item.title}</li>
         ))}
       </ul>
+      </div>
+      <div className="main">
+
+      </div>
     </div>
   );
 }
