@@ -11,8 +11,8 @@ from app import db, models, schemas, crud
 
 # CORS – pozwalamy na requesty z frontu (Vite)
 origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 
