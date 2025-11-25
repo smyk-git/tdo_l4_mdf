@@ -1,12 +1,13 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
+from contextlib import asynccontextmanager
 from typing import Optional
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from sqlalchemy import text
-from . import db, models, schemas, crud
+from starlette.middleware import _MiddlewareFactory
 
-app = FastAPI(title="FastAPI + React + Postgres demo")
+from app import db, models, schemas, crud
 
 # CORS – pozwalamy na requesty z frontu (Vite)
 origins = [
@@ -14,8 +15,18 @@ origins = [
     "http://127.0.0.1:5173",
 ]
 
+
+@asynccontextmanager
+def lifespan(app: FastAPI):
+    db.init_db()
+    print("db start")
+    yield
+    print("db stop")
+
+app = FastAPI(title="FastAPI + React + Postgres demo", lifespan=lifespan)
+
 app.add_middleware(
-    CORSMiddleware,
+    _MiddlewareFactory[CORSMiddleware],
     allow_origins=origins,        # skąd wolno
     allow_credentials=True,
     allow_methods=["*"],          # GET, POST, itd.
@@ -29,16 +40,11 @@ class ItemsCreate(BaseModel):
     description: Optional[str] = None
     
 class ItemsRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     title: str
     description: Optional[str] = None
-
-    class Config:
-        orm_mode = True
-        
-@app.on_event("startup")
-def on_startup():
-    db.init_db()
 
 @app.get("/health")
 def health():
