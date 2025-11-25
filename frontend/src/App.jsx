@@ -56,7 +56,7 @@ function App() {
           <div className="main_container">
             <div className="movie_container">
               <VideoPosterTile number={0} title="ADD NEW MOVIE" onClick={() => setPage("add")} />
-              <VideoPosterTile number={1} title="Tokyo Drift" onClick={() => setPage("edit")} />
+              <VideoPosterTile number={1} title="The Fast and The Furious: Tokyo Drift" onClick={() => setPage("edit")} />
               <VideoPosterTile number={2} title="Matrix" onClick={() => setPage("edit")} />
               <VideoPosterTile number={3} title="Se7en" onClick={() => setPage("edit")} />
               <VideoPosterTile number={4} title="Indiana Jones" onClick={() => setPage("edit")} />
