@@ -21,6 +21,7 @@ function App() {
     { number: 8, title: "Kiler", page: "edit" },
     { number: 9, title: "Znachor", page: "edit" },
     { number: 10, title: "The Pianist", page: "edit" },
+    { number: 0, title: "Krętacz z krakowa", page: "edit" },
   ];
 
 
