@@ -13,6 +13,88 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (min-width: 80em) {
+.footer{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: #333333;
+  width:100%;
+  height:7em;
+}
+.footer p{
+  font-size: 1em;
+  height: auto;
+  display:flex;
+  align-items: center;
+  text-align: center;
+}
+.editor{
+  width:100%;
+  height:auto;
+  display: flex;
+}
+.editor-left
+{
+  position:fixed;
+  width:40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+
+}
+.editor-right
+{
+  margin-left: 40.2%;
+  width:60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+
+}
+.editor-right form
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  gap: 30px;
+}
+.editor-right form div{
+  padding: 0 20px;
+}
+.editor-right form div input{
+  background-color: transparent;
+  font-size: 1.2em;
+  color:white;
+  height: 84px;
+  width: 40vw;
+  padding: 0 2em;
+  outline: none;
+  border: none;
+  border-radius: 4em;
+  background-color: #333333;
+}
+.editor-right form div input::placeholder {
+  color: #A7A7A7;
+}
+.logo
+{
+  position: absolute;
+  top: 5.5em;
+  left: 5em; 
+}
+.logo img{
+  height:4em;
+}
+.logo:hover{
+  cursor: pointer;
+  opacity: 0.5;
+}
 a {
   font-weight: 500;
   color: #646cff;
@@ -31,6 +113,7 @@ a:hover {
   width:100%;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(0deg,rgba(42, 123, 155, 0) 0%, rgba(0, 0, 0, 0.61) 50%, rgba(0, 0, 0, 1) 100%);
 }
 
 .search_bar form{
@@ -74,7 +157,6 @@ a:hover {
   display: flex;
   width:100%;
   height:auto;
-  border-top: #333333 solid 10px;
   justify-content: center;
 }
 .mainbody{
@@ -84,7 +166,206 @@ a:hover {
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+}
+html{
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+.main_container{
+  display: flex;
+  width:100%;
+  height:auto;
+  justify-content: center;
+}
+.movie_container {
+  width: fit-content;         
+  padding: 7em;             
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap:12em
+}
+.poster:hover {
+  transform: scale(1.3);
+}
+button {
+  border-radius: 100%;
+  border: 2px solid transparent;
+  padding: 1em;
+  margin: 0em 2em;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  transition: transform 1s ease-in-out;
+}
+button img {
+  transition: transform 0.2s ease-in-out;
+}
+button:hover img {
+  transform: scale(1.2);
+}
+button:active img {
+  transform: scale(0.9); 
+}
+} 
+@media (max-width: 80em) {
+.logo:hover{
+  cursor: pointer;
+  opacity: 0.5;
+}
+.editor{
+  width:100%;
+  height:auto;
+  display: flex;
+  flex-direction: column;
+}
+.editor-left
+{
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
+
+}
+.editor-right
+{
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+
+}
+.editor-right form
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  gap: 30px;
+}
+.editor-right form div{
+  padding: 0 20px;
+}
+.editor-right form div input{
+  background-color: transparent;
+  font-size: 1.2em;
+  color:white;
+  height: 84px;
+  width: 40vw;
+  padding: 0 2em;
+  outline: none;
+  border: none;
+  border-radius: 4em;
+  background-color: #333333;
+}
+.editor-right form div input::placeholder {
+  color: #A7A7A7;
+}
+.footer{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: #333333;
+  width:100%;
+  height:7em;
+}
+.footer p{
+  font-size: 1em;
+  height: auto;
+  display:flex;
+  align-items: center;
+  text-align: center;
+}
+.logo
+{
+  position: absolute;
+}
+.logo img{
+  height:4em;
+}
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+.header
+{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display:flex;
+  height:240px;
+  width:100%;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(0deg,rgba(42, 123, 155, 0) 0%, rgba(0, 0, 0, 0.61) 40%, rgba(0, 0, 0, 1) 100%);
+}
+
+.search_bar form{
+  top: 0;
+  position: sticky;
+  display:flex;
+  padding:0px;
+  margin:0px;
+  margin-top: 16em;
+  background-color: transparent;
+  white-space: nowrap;
+  border-radius: 4em;
+  align-items: center;
+  justify-content: center;
   
+}
+.search_bar input{
+  background-color: transparent;
+  font-size: 1.2em;
+  color:white;
+  height: 84px;
+  width: 0vw;
+  transition: 0.8s ease;
+  padding-left: 0em;
+  outline: none;
+  border: none;
+}
+.search_bar input::placeholder {
+  color: #A7A7A7;
+}
+.search_bar:hover input{
+  width: 30vw;
+  padding-left: 1.4em;
+}
+.search_bar:hover form {
+  background-color: #333333;
+}
+.search_bar form button{
+  background-color: #333333;
+}
+.main{
+  display: flex;
+  width:100%;
+  height:auto;
+  justify-content: center;
+}
+.mainbody{
+  display: flex;
+  flex-wrap:wrap;
+}
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 html{
   margin: 0;
@@ -114,30 +395,6 @@ h1 {
 .poster:hover {
   transform: scale(1.3);
 }
-
-/* @media (min-width: 80em) {
-  .movie_container {
-    grid-template-columns: repeat(5, 12em);
-  }
-}
-
-@media (max-width: 80em) and (min-width: 60em) {
-  .movie_container {
-    grid-template-columns: repeat(4, 12em);
-  }
-}
-
-@media (max-width: 50em) and (min-width: 40em) {
-  .movie_container {
-    grid-template-columns: repeat(3, 12em);
-  }
-} */
-
-/* @media (max-width: 80em) {
-  .movie_container {
-    grid-template-columns: repeat(1, 12em);
-  }
-} */
 button {
   border-radius: 100%;
   border: 2px solid transparent;
@@ -157,3 +414,4 @@ button:hover img {
 button:active img {
   transform: scale(0.9); 
 }
+} 
