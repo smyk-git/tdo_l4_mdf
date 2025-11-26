@@ -93,6 +93,10 @@ function App() {
             <div className="editor">
               <div className="editor-left">
                 <VideoPosterTile key={selectedMovie.number} number={selectedMovie.number} title={selectedMovie.title}/>
+                <div className="editor-left-photo">
+                  <button type="submit"><p>CHANGE PHOTO</p></button>
+                  <button type="submit"><p>DELETE PHOTO</p></button>
+                </div>
               </div>
               <div className="editor-right">
                 <h2>Edit data for movie:</h2>
@@ -132,13 +136,14 @@ function App() {
                     <p>Social opinion or rating of the movie</p>
                     <input type="text" placeholder="REVIEW" />
                   </div>
-
-                  <button type="submit">
-                    <img src={searchIcon} alt="Search" width="40" height="40" />
-                  </button>
+                  <button type="submit"><p>CONFIRM</p></button>
+                  <button type="reset"><p>RESET</p></button>
                 </form>
               </div>
             </div>
+          </div>
+          <div className="footer">
+            <p>Credits: Dawid, Michał, Filip<br />2025</p>
           </div>
         </>
       )}
@@ -151,9 +156,13 @@ function App() {
             <div className="editor">
               <div className="editor-left">
                 <VideoPosterTile key={selectedMovie.number} number={selectedMovie.number} title={selectedMovie.title}/>
+                <div className="editor-left-photo">
+                  <button type="submit"><p>CHANGE PHOTO</p></button>
+                  <button type="submit"><p>DELETE PHOTO</p></button>
+                </div>
               </div>
               <div className="editor-right">
-                <h2>Add data for movie:</h2>
+                <h2>Add data for new movie:</h2>
                 <form onSubmit={handleSubmit} style={{ marginBottom: "1.5rem" }}>
                   <div>
                     <p style={{ fontSize: "2em",fontWeight: "bold" }}>Title</p>
@@ -190,10 +199,14 @@ function App() {
                     <p>Social opinion or rating of the movie</p>
                     <input type="text" placeholder="REVIEW" />
                   </div>
-                  <button type="submit"></button>
+                  <button type="submit"><p>CONFIRM</p></button>
+                  <button type="reset"><p>RESET</p></button>
                 </form>
               </div>
             </div>
+          </div>
+          <div className="footer">
+            <p>Credits: Dawid, Michał, Filip<br />2025</p>
           </div>
         </>
       )}
