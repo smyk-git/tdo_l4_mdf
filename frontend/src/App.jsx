@@ -92,10 +92,7 @@ function App() {
           <div className="main">
             <div className="editor">
               <div className="editor-left">
-                <VideoPosterTile key={selectedMovie.number} number={selectedMovie.number} title={selectedMovie.title} onClick={() => {
-                  setSelectedMovie(selectedMovie);
-                  setPage("edit");
-                }} />
+                <VideoPosterTile key={selectedMovie.number} number={selectedMovie.number} title={selectedMovie.title}/>
               </div>
               <div className="editor-right">
                 <h2>Edit data for movie:</h2>
@@ -153,10 +150,7 @@ function App() {
           <div className="main">
             <div className="editor">
               <div className="editor-left">
-                <VideoPosterTile key={selectedMovie.number} number={selectedMovie.number} title={selectedMovie.title} onClick={() => {
-                  setSelectedMovie(selectedMovie);
-                  setPage("edit");
-                }} />
+                <VideoPosterTile key={selectedMovie.number} number={selectedMovie.number} title={selectedMovie.title}/>
               </div>
               <div className="editor-right">
                 <h2>Add data for movie:</h2>
