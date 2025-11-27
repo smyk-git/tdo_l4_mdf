@@ -84,25 +84,22 @@
   }
 
   .editor-left {
-    position: fixed;
     width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 75vh;
-
+    height:50%;
   }
 
   .editor-right {
-    margin-left: 40.2%;
     width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: auto;
-
+   
   }
 
   .editor-right form {
@@ -345,6 +342,7 @@
     height: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-bottom: 60px;
   }
 
@@ -358,13 +356,12 @@
   }
 
   .editor-right {
-    width: 100%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: auto;
-
   }
 
   .editor-right form {
@@ -373,10 +370,14 @@
     align-items: center;
     height: 100%;
     gap: 30px;
+    justify-content: center;
   }
 
   .editor-right form div {
     width:60vw;
+    display: flex;
+    flex-direction: column;
+    align-items:start;
   }
   .editor-right form div p{
     width:70%;
@@ -386,7 +387,7 @@
     background-color: transparent;
     color: white;
     height: 62px;
-    width: 80%;
+    width:90%;
     padding: 0 2em;
     outline: none;
     border: none;
