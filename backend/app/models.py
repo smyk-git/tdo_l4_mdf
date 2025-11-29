@@ -7,3 +7,7 @@ class Item(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(200), nullable=False)
     description = Column(Text, nullable=True)
+    year = Column(Integer, nullable=True)
+    director = Column(String(100), nullable=True)
+    genre = Column(String(100), nullable=True)
+    rating = Column(Integer, nullable=True) # rating from 1 to 10   

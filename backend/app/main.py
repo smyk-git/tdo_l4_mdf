@@ -35,17 +35,6 @@ app.add_middleware(
 
 models.Base.metadata.create_all(bind=db.engine)
 
-class ItemsCreate(BaseModel):
-    title: str
-    description: Optional[str] = None
-    
-class ItemsRead(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-
-    id: int
-    title: str
-    description: Optional[str] = None
-
 @app.get("/health")
 def health():
     return {"status": "ok"}
