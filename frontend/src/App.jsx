@@ -24,7 +24,7 @@ function App() {
     fetch("http://localhost:8000/items", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, description, year: year ? parseInt(year) : null, rating: rating ? parseInt(rating) : null, genre, director }),
+      body: JSON.stringify({ title, description, year: year ? parseInt(year, 10) : null, rating: rating ? parseInt(rating, 10) : null, genre, director }),
     })
       .then((res) => res.json())
       .then((newItem) => {
