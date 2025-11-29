@@ -20,7 +20,7 @@ function VideoPosterTile({ number, title, onClick }) {
             : "translate(-50%, -50%) scale(0.40)",
           opacity: isHovered ? 0.9 : 0,
         }}
-        aria-hidden
+        aria-hidden="true"
       />
       <div
         style={{
