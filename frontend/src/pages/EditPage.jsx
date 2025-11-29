@@ -18,11 +18,12 @@ function EditPage() {
   const [description, setDescription] = useState("");
   const [director, setDirector] = useState("");
   const [rating, setRating] = useState("");
+  const backend_url = import.meta.env.BACKEND_URL || "http://localhost:8000";
 
   // 1. Pobierz item z backendu (na razie przez /items i find)
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:8000/items")
+    fetch(`${backend_url}/items`)
       .then((res) => res.json())
       .then((items) => {
         const found = items.find((it) => String(it.id) === String(id));

@@ -1,7 +1,6 @@
 // frontend/src/pages/AddPage.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import logo from "../assets/logo/logo.svg";
 import VideoPosterTile from "../VideoPoster";
 
@@ -14,12 +13,13 @@ function AddPage() {
   const [rating, setRating] = useState("");
 
   const navigate = useNavigate();
+  const backend_url = import.meta.env.BACKEND_URL || "http://localhost:8000";
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim()) return;
 
-    fetch("http://localhost:8000/items", {
+    fetch(`${backend_url}/items`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -33,11 +33,11 @@ function AddPage() {
     })
       .then((res) => res.json())
       .then((newItem) => {
-        console.log("Utworzono film:", newItem);
+        console.log("Created movie:", newItem);
         navigate("/"); // po dodaniu wracamy na Home
       })
       .catch((err) => {
-        console.error("Błąd przy tworzeniu itema", err);
+        console.error("Error creating item:", err);
       });
   };
 

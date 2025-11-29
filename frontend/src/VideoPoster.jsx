@@ -36,8 +36,8 @@ function VideoPosterTile({ number, title, onClick }) {
 const styles = {
   wrapper: {
     position: "relative",
-    width: "18em",
-    margin: "2.5em",
+    width: "10em",
+    margin: "0.5em",
     textAlign: "center",
     transition: "transform 0.6s ease",
     overflow: "visible",
@@ -46,8 +46,8 @@ const styles = {
     position: "absolute",
     top: "42%",
     left: "50%",
-    width: "26em",
-    height: "26em",
+    width: "20em",
+    height: "20em",
     transform: "translate(-50%, 0) scale(0.95)",
     background: "radial-gradient(circle, rgba(255,255,255,0.45), transparent 70%)",
     transition: "transform 0.5s ease, opacity 0.5s ease",
@@ -58,7 +58,7 @@ const styles = {
   poster: {
     position: "relative",
     width: "100%",
-    height: "26em",
+    height: "16em",
     backgroundSize: "cover",
     backgroundPosition: "center",
     border: "1px solid",

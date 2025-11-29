@@ -1,7 +1,6 @@
 // frontend/src/pages/HomePage.jsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import searchIcon from "../assets/search.svg";
 import logo from "../assets/logo/logo.svg";
 import VideoPosterTile from "../VideoPoster"; // plik VideoPoster.jsx
@@ -11,14 +10,15 @@ function HomePage() {
   const [search, setSearch] = useState("");
 
   const navigate = useNavigate();
+  const backend_url = import.meta.env.BACKEND_URL || "http://localhost:8000";
 
   // 1. Pobierz listę filmów z backendu
   useEffect(() => {
-    fetch("http://localhost:8000/items")
+    fetch(`${backend_url}/items`)
       .then((res) => res.json())
       .then(setItems)
       .catch((err) => {
-        console.error("Błąd przy pobieraniu /items", err);
+        console.error("Error fetching /items", err);
       });
   }, []);
 
@@ -40,6 +40,7 @@ function HomePage() {
             onSubmit={(e) => e.preventDefault()}
           >
             <input
+              id="search-input"
               type="text"
               className="item-input"
               placeholder="Search by title..."
@@ -47,7 +48,7 @@ function HomePage() {
               onChange={(e) => setSearch(e.target.value)}
             />
             <button type="submit" className="item-button">
-              <img src={searchIcon} alt="Search" width="30" height="30" />
+              <img src={searchIcon} alt="Search" width="30" height="30"/>
             </button>
           </form>
         </div>
