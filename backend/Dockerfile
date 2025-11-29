@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app ./app
 
-copy alembic.ini .
+COPY alembic.ini .
 COPY alembic ./alembic
 
 ENV PYTHONUNBUFFERED=1
