@@ -7,22 +7,11 @@ import VideoPosterTile from "./VideoPoster";
 function App() {
   const [items, setItems] = useState([]);
   const [title, setTitle] = useState("");
-  const [page, setPage] = useState("home");
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const movieTiles = [
-    { number: 0, title: "ADD NEW MOVIE", page: "add" },
-    { number: 1, title: "The Fast and The Furious: Tokyo Drift", page: "edit" },
-    { number: 2, title: "Matrix", page: "edit" },
-    { number: 3, title: "Se7en", page: "edit" },
-    { number: 4, title: "Indiana Jones and Raiders of the Lost Ark", page: "edit" },
-    { number: 5, title: "Beverly Hills Cop II", page: "edit" },
-    { number: 6, title: "Pulp Fiction", page: "edit" },
-    { number: 7, title: "Minecraft Movie", page: "edit" },
-    { number: 8, title: "Kiler", page: "edit" },
-    { number: 9, title: "Znachor", page: "edit" },
-    { number: 10, title: "The Pianist", page: "edit" },
-  ];
-
+  const [description, setDescription] = useState("");
+  const [year, setYear] = useState("");
+  const [rating, setRating] = useState("");
+  const [genre, setGenre] = useState("");
+  const [director, setDirector] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8000/items")
@@ -38,12 +27,17 @@ function App() {
     fetch("http://localhost:8000/items", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title }),
+      body: JSON.stringify({ title, description, year: year ? parseInt(year, 10) : null, rating: rating ? parseInt(rating, 10) : null, genre, director }),
     })
       .then((res) => res.json())
       .then((newItem) => {
         setItems((prev) => [...prev, newItem]);
         setTitle("");
+        setDescription("");
+        setYear("");
+        setRating("");
+        setGenre("");
+        setDirector("");  
       })
       .catch(console.error);
   };

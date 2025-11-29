@@ -1,19 +1,33 @@
+from pydantic import BaseModel, ConfigDict
+from contextlib import asynccontextmanager
+from typing import Optional
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from . import db, models, schemas, crud
+from sqlalchemy import text
+from starlette.middleware import _MiddlewareFactory
 
-app = FastAPI(title="FastAPI + React + Postgres demo")
+from app import db, models, schemas, crud
 
 # CORS – pozwalamy na requesty z frontu (Vite)
 origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    db.init_db()
+    print("db start")
+    yield
+    print("db stop")
+
+app = FastAPI(title="FastAPI + React + Postgres demo", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,        # skąd wolno
+    allow_origins=origins,        # skąd wolno  
     allow_credentials=True,
     allow_methods=["*"],          # GET, POST, itd.
     allow_headers=["*"],          # wszystkie nagłówki
@@ -32,3 +46,11 @@ def list_items(db_session: Session = Depends(db.get_db)):
 @app.post("/items", response_model=schemas.ItemRead)
 def create_item(item: schemas.ItemCreate, db_session: Session = Depends(db.get_db)):
     return crud.create_item(db_session, item)
+
+@app.get("/db-check")
+def db_check(db: Session = Depends(db.get_db)):
+    try:
+        db.execute(text("SELECT * from items"))
+        return {"status": "OK", "message": "Connection to DB works!", "entities": crud.get_items(db)}
+    except Exception as e:
+        return {"status": "ERROR", "message": str(e)}

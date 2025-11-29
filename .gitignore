@@ -1,1 +1,8 @@
+<<<<<<< HEAD
 /backend/app/__pychache__/*
+=======
+__pycache__/
+*.pyc
+.env
+
+>>>>>>> 5b21a51c0077278e3fd7d93492ea5a2e0ada19f8

@@ -9,37 +9,5 @@
 
 ## Uruchomienie
 
-###  1. Baza (PostgreSQL):
-
 ```bash
-docker compose up -d db
-```
-
-### 2. Backend (FastAPI):
-```
-cd backend
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
-```
-### 3. Frontend (React):
-```
-cd frontend
-npm install
-npm run dev
-```
-
-## Testowanie commitow
-### Filip
-```
-Dodaje commit o zmianie w README.md
-```
-## Lista Todo 📨 
-### - Dodanie ponizszych pól do tabelki "items"
-```
-genre - gatunek filmu
-director - rezyser filmu
-year - rok premiery filmu
-```
-### - Dodanie stron CRUD
+docker compose up --build
