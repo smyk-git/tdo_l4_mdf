@@ -22,18 +22,26 @@ services:
       - db
     ports:
       - "${BACKEND_PORT}:8000"
+    volumes:
+      - ./backend/app:/app/app
+      - ./backend/alembic:/app/alembic
+      - ./backend/alembic.ini:/app/alembic.ini  # 👈 ważne!
+      - ./backend/requirements.txt:/app/requirements.txt
     networks:
       - app-net
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
     depends_on:
       - backend
     ports:
       - "${FRONTEND_PORT}:3000"
     environment:
-      # np. adres API
       REACT_APP_API_URL: "http://localhost:${BACKEND_PORT}"
+    volumes:
+      - ./frontend/src:/app/src          # 👈 hot reload React
+      - ./frontend/public:/app/public
     networks:
       - app-net
 

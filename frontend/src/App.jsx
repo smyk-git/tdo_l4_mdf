@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 function App() {
   const [items, setItems] = useState([]);
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [year, setYear] = useState("");
+  const [rating, setRating] = useState("");
+  const [genre, setGenre] = useState("");
+  const [director, setDirector] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8000/items")
@@ -19,12 +24,17 @@ function App() {
     fetch("http://localhost:8000/items", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title }),
+      body: JSON.stringify({ title, description, year: year ? parseInt(year) : null, rating: rating ? parseInt(rating) : null, genre, director }),
     })
       .then((res) => res.json())
       .then((newItem) => {
         setItems((prev) => [...prev, newItem]);
         setTitle("");
+        setDescription("");
+        setYear("");
+        setRating("");
+        setGenre("");
+        setDirector("");  
       })
       .catch(console.error);
   };

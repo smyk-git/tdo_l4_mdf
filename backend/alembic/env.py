@@ -9,7 +9,7 @@ from sqlalchemy import pool
 from alembic import context
 
 load_dotenv()  # Load environment variables from a .env file
-DATABASE_URL = os.getenv("DATABASE_URL").replace("@db","@localhost")  # Adjust if needed for local development
+DATABASE_URL = os.getenv("DATABASE_URL")#.replace("@db","@localhost")  # Adjust if needed for local development
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

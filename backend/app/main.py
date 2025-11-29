@@ -17,7 +17,7 @@ origins = [
 
 
 @asynccontextmanager
-def lifespan(app: FastAPI):
+async def lifespan(app: FastAPI):
     db.init_db()
     print("db start")
     yield
@@ -26,8 +26,8 @@ def lifespan(app: FastAPI):
 app = FastAPI(title="FastAPI + React + Postgres demo", lifespan=lifespan)
 
 app.add_middleware(
-    _MiddlewareFactory[CORSMiddleware],
-    allow_origins=origins,        # skąd wolno
+    CORSMiddleware,
+    allow_origins=origins,        # skąd wolno  
     allow_credentials=True,
     allow_methods=["*"],          # GET, POST, itd.
     allow_headers=["*"],          # wszystkie nagłówki
