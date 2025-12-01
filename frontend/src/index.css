@@ -13,7 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (min-width: 120em) {
+@media (min-width: 800px) {
   *{
     font-family: "Stack Sans Headline", sans-serif;
   }
@@ -132,15 +132,14 @@
   }
 
   .logo {
-    position: relative;
-    top: 5.5em;
-    left: 5em;
+    position: absolute;
+    top: 6em;
+    left: 11em;
   }
 
   .logo img {
     height: 4em;
   }
-
   .logo:hover {
     cursor: pointer;
     opacity: 0.5;
@@ -157,7 +156,7 @@
   }
 
   .header {
-    position: sticky;
+    position: absolute;
     top: 0;
     z-index: 1000;
     display: flex;
@@ -172,6 +171,7 @@
 
   .search_bar form {
     top: 0;
+    /* left: 0em; */
     position: relative;
     display: flex;
     padding: 0px;
@@ -211,6 +211,7 @@
 
   .main {
     display: flex;
+    margin-top: 10em;
     width: 100%;
     height: auto;
     justify-content: center;
@@ -282,7 +283,7 @@
   }
 }
 
-@media (max-width: 120em) {
+@media (max-width: 800px) {
   *{
     font-family: "Stack Sans Headline", sans-serif;
   }
@@ -419,7 +420,7 @@
   }
 
   .logo {
-    position: relative;
+    position: absolute;
   }
 
   .logo img {
@@ -437,8 +438,9 @@
   }
 
   .header {
-    position: sticky;
+    position: absolute;
     top: 0;
+  
     z-index: 1000;
     display: flex;
     height: 240px;
@@ -492,6 +494,7 @@
   }
 
   .main {
+    margin-top: 10em;
     display: flex;
     width: 100%;
     height: auto;
