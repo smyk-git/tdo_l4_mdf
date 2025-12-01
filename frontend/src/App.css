@@ -1,42 +1,132 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* === GLOBAL BODY === */
+.mainbody {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #111;
+  color: white;
+  font-family: sans-serif;
+}
+
+/* === HEADER === */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  align-items: center;
+  background: #000;
+}
+
+.logo img {
+  height: 60px;
+  cursor: pointer;
+}
+
+/* === SEARCH BAR === */
+.search_bar {
+  display: flex;
+  align-items: center;
+}
+
+.search_bar form {
+  display: flex;
+  gap: 10px;
+}
+
+.search_bar input {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+}
+
+.search_bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* === MAIN CONTAINER === */
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.main_container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+/* === MOVIE GRID === */
+.movie_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 25px;
+  padding-top: 20px;
+}
+
+/* === FOOTER === */
+.footer {
   text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #aaa;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* === EDIT / ADD PAGE LAYOUT === */
+.editor {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.editor-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.editor-left-photo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.card {
-  padding: 2em;
+.editor-left-photo button {
+  background: #222;
+  padding: 10px 20px;
+  border: 1px solid #444;
+  cursor: pointer;
+  color: white;
 }
 
-.read-the-docs {
-  color: #888;
+.editor-right {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.editor-right input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  margin-top: 8px;
+}
+
+.editor-right button {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  background: #444;
+  color: white;
+  font-size: 1rem;
 }
