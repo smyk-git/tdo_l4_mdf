@@ -251,7 +251,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    gap: 12em
+    gap: 12em;
   }
 
   .poster:hover {
