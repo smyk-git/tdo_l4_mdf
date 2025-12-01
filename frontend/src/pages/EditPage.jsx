@@ -20,10 +20,10 @@ function EditPage() {
   const [rating, setRating] = useState("");
   const backend_url = import.meta.env.BACKEND_URL || "http://localhost:8000";
 
-  // 1. Pobierz item z backendu (na razie przez /items i find)
+  // 1. Pobierz item z backendu (na razie przez /items i find)  
   useEffect(() => {
     setLoading(true);
-    fetch(`${backend_url}/items`)
+    fetch(`${backend_url}/items/`)
       .then((res) => res.json())
       .then((items) => {
         const found = items.find((it) => String(it.id) === String(id));
@@ -38,14 +38,11 @@ function EditPage() {
         }
       })
       .finally(() => setLoading(false));
-  }, [id]);
+  }, [id, backend_url]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 🔴 WAŻNE:
-    // Backend nie ma jeszcze PUT /items/{id},
-    // więc tu tylko pokazujemy, co *by* poszło:
     const payload = {
       title,
       description,
@@ -54,9 +51,51 @@ function EditPage() {
       genre,
       director,
     };
+    try {
+      const response = await fetch(`${backend_url}/items/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      console.log("Response status:", response);
 
-    console.log("TODO: wyślij PUT /items/" + id, payload);
-    alert("TODO: implementować endpoint PUT /items/{id} w backendzie 🙂");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const updatedItem = await response.json();
+      setItem(updatedItem);
+      console.log("Updated movie:", updatedItem);
+      navigate("/"); // po edycji wracamy na Home
+    } catch (error) {
+      console.error("Error updating item:", error);
+      alert("Failed to update the movie. Please try again.");
+    }
+
+  };
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    const confirmDelete = window.confirm("Are you sure you want to delete this movie?");
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(`${backend_url}/items/${id}`, {
+        method: "DELETE",
+      });       
+      console.log("Delete response status:", response);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      console.log("Deleted movie with id:", id);
+      navigate("/"); // po usunięciu wracamy na Home
+    } catch (error) {
+      console.error("Error deleting item:", error);
+      alert("Failed to delete the movie. Please try again.");
+    } 
+  
   };
 
   if (loading) {
@@ -189,6 +228,9 @@ function EditPage() {
               <button type="button" onClick={() => navigate("/")}>
                 <p>CANCEL</p>
               </button>
+              <button type="button" onClick={handleDelete}>   
+                <p>DELETE MOVIE</p>
+              </button> 
             </form>
           </div>
         </div>
