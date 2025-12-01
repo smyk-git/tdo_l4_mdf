@@ -12,7 +12,7 @@ from app import db, models, schemas, crud
 # CORS – pozwalamy na requesty z frontu (Vite)
 origins = [
     "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    "http://127.0.0.1:3000",        
 ]
 
 
@@ -54,3 +54,12 @@ def db_check(db: Session = Depends(db.get_db)):
         return {"status": "OK", "message": "Connection to DB works!", "entities": crud.get_items(db)}
     except Exception as e:
         return {"status": "ERROR", "message": str(e)}
+    
+@app.put("/items/{item_id}", response_model=schemas.ItemRead)
+def update_item(item_id: int, item: schemas.ItemUpdate, db_session: Session = Depends(db.get_db)):
+    return crud.update_item(db_session, item_id, item)
+
+@app.delete("/items/{item_id}")
+def delete_item(item_id: int, db_session: Session = Depends(db.get_db)):
+    return crud.delete_item(db_session, item_id)
+        

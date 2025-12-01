@@ -59,7 +59,7 @@ function HomePage() {
         <div className="main_container">
           <div className="movie_container">
             <VideoPosterTile
-                number="+"
+                number={0}
                 title="Add"
                 onClick={() => navigate("/add")}
               />
