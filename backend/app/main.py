@@ -7,7 +7,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy import text
 from starlette.middleware import _MiddlewareFactory
 
-from app import db, models, schemas, crud
+
+from . import db, models, schemas, crud
 
 # CORS – pozwalamy na requesty z frontu (Vite)
 origins = [
@@ -65,3 +66,7 @@ def db_check(db: Session = Depends(db.get_db)):
         return {"status": "OK", "message": "Connection to DB works!", "entities": crud.get_items(db)}
     except Exception as e:
         return {"status": "ERROR", "message": str(e)}
+
+# @app.get("/users/{username}",response_model=schemas.UserRead)
+# def read_user(username: str, db_session: Session = Depends(db.get_db)):
+#     return crud.get_user(db_session,username)

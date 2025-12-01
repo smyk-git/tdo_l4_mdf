@@ -16,3 +16,11 @@ class ItemRead(BaseModel):
         "from_attributes": True
     }
 
+class UserBase(BaseModel):
+    username: str
+    password: str
+
+class UserRead(BaseModel):
+    id: int
+    username: str
+    password: str
