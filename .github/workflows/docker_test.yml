@@ -31,10 +31,8 @@ jobs:
 
       # Test DB connection from backend
       - name: Check backend → db connection
-        run: docker compose -f ./docker-compose.yml exec -T backend \
-          sh -c "nc -z db 5432"
+        run: docker compose -f ./docker-compose.yml exec -T backend \sh -c "nc -z db 5432"
 
       # Test frontend connection to backend
       - name: Check frontend → backend connection
-        run: docker compose -f ./docker-compose.yml exec -T frontend \
-          sh -c "curl -sSf http://backend:3000/health"
+        run: docker compose -f ./docker-compose.yml exec -T frontend \sh -c "curl -sSf http://backend:3000/health"
