@@ -1,0 +1,40 @@
+name: docker
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [db, backend, frontend]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ${{ matrix.service }} tests
+        uses: adambirds/docker-compose-action@v1.5.0
+        with:
+          compose-file: "./docker/docker-compose.yml"
+          test-container: ${{ matrix.service }}
+          test-command: "npm test"
+
+  connectivity:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Spin up all containers
+      - name: Start docker-compose stack
+        run: docker compose -f ./docker/docker-compose.yml up -d
+
+      # Test DB connection from backend
+      - name: Check backend → db connection
+        run: docker compose -f ./docker/docker-compose.yml exec -T backend \
+          sh -c "nc -z db 5432"
+
+      # Test frontend connection to backend
+      - name: Check frontend → backend connection
+        run: docker compose -f ./docker/docker-compose.yml exec -T frontend \
+          sh -c "curl -sSf http://backend:3000/health"
