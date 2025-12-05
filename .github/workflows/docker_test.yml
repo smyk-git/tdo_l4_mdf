@@ -28,7 +28,8 @@ jobs:
       POSTGRES_DB: mydb
       POSTGRES_PORT: 5432
       DATABASE_URL: postgres://myuser:mypassword@db:5432/mydb
-      BACKEND_PORT: 3000
+      BACKEND_PORT: 8000
+      FRONTEND_PORT: 3000
     steps:
       - uses: actions/checkout@v4
 
