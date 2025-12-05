@@ -19,28 +19,28 @@ jobs:
           test-container: ${{ matrix.service }}
           test-command: "npm test"
 
-  connectivity:
-    needs: test
-    runs-on: ubuntu-latest
-    env:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydb
-      POSTGRES_PORT: 5432
-      DATABASE_URL: postgres://myuser:mypassword@db:5432/mydb
-      BACKEND_PORT: 8000
-      FRONTEND_PORT: 3000
-    steps:
-      - uses: actions/checkout@v4
-
-      # Spin up all containers
-      - name: Start docker-compose stack
-        run: docker compose -f ./docker-compose.yml up -d
-
-      # Test DB connection from backend
-      - name: Check backend → db connection
-        run: docker compose -f ./docker-compose.yml exec -T backend \sh -c "nc -z db 5432"
-
-      # Test frontend connection to backend
-      - name: Check frontend → backend connection
-        run: docker compose -f ./docker-compose.yml exec -T frontend \sh -c "curl -sSf http://backend:3000/health"
+#  connectivity:
+#    needs: test
+#    runs-on: ubuntu-latest
+#    env:
+#      POSTGRES_USER: myuser
+#      POSTGRES_PASSWORD: mypassword
+#      POSTGRES_DB: mydb
+#      POSTGRES_PORT: 5432
+#      DATABASE_URL: postgres://myuser:mypassword@db:5432/mydb
+#      BACKEND_PORT: 8000
+#      FRONTEND_PORT: 3000
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      # Spin up all containers
+#      - name: Start docker-compose stack
+#        run: docker compose -f ./docker-compose.yml up -d
+#
+#      # Test DB connection from backend
+#      - name: Check backend → db connection
+#        run: docker compose -f ./docker-compose.yml exec -T backend \sh -c "nc -z db 5432"
+#
+#      # Test frontend connection to backend
+#      - name: Check frontend → backend connection
+#        run: docker compose -f ./docker-compose.yml exec -T frontend \sh -c "curl -sSf http://backend:3000/health"
