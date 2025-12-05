@@ -22,6 +22,13 @@ jobs:
   connectivity:
     needs: test
     runs-on: ubuntu-latest
+    env:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydb
+      POSTGRES_PORT: 5432
+      DATABASE_URL: postgres://myuser:mypassword@db:5432/mydb
+      BACKEND_PORT: 3000
     steps:
       - uses: actions/checkout@v4
 
