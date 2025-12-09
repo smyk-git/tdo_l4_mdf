@@ -34,13 +34,13 @@ jobs:
       - name: Load variables from .var
         run: |
           set -o allexport
-          source .var/env
+          source .env
           set +o allexport
         shell: bash
         
       - name: Export env vars to GitHub env
         run: |
-          cat .var/env >> $GITHUB_ENV
+          cat .env >> $GITHUB_ENV
 
       # Spin up all containers
       - name: Start docker-compose stack
