@@ -7,12 +7,12 @@ from sqlalchemy.orm import Session
 from sqlalchemy import text
 from starlette.middleware import _MiddlewareFactory
 
-from app import db, models, schemas, crud
+from . import db, models, schemas, crud
 
 # CORS – pozwalamy na requesty z frontu (Vite)
 origins = [
     "http://localhost:3000",
-    "http://127.0.0.1:3000",        
+    "http://127.0.0.1:3000",
 ]
 
 
@@ -27,8 +27,8 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="FastAPI + React + Postgres demo", lifespan=lifespan)
 
 app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,        # skąd wolno  
+    _MiddlewareFactory[CORSMiddleware],
+    allow_origins=origins,        # skąd wolno
     allow_credentials=True,
     allow_methods=["*"],          # GET, POST, itd.
     allow_headers=["*"],          # wszystkie nagłówki
@@ -54,7 +54,7 @@ def db_check(db: Session = Depends(db.get_db)):
         return {"status": "OK", "message": "Connection to DB works!", "entities": crud.get_items(db)}
     except Exception as e:
         return {"status": "ERROR", "message": str(e)}
-    
+
 @app.put("/items/{item_id}", response_model=schemas.ItemRead)
 def update_item(item_id: int, item: schemas.ItemUpdate, db_session: Session = Depends(db.get_db)):
     return crud.update_item(db_session, item_id, item)
@@ -62,4 +62,8 @@ def update_item(item_id: int, item: schemas.ItemUpdate, db_session: Session = De
 @app.delete("/items/{item_id}")
 def delete_item(item_id: int, db_session: Session = Depends(db.get_db)):
     return crud.delete_item(db_session, item_id)
-        
+
+
+# @app.get("/users/{username}",response_model=schemas.UserRead)
+# def read_user(username: str, db_session: Session = Depends(db.get_db)):
+#     return crud.get_user(db_session,username)

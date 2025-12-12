@@ -8,7 +8,7 @@ class ItemBase(BaseModel):
     rating: Optional[int] = None
     genre: Optional[str] = None
     director: Optional[str] = None
-    
+
 
 class ItemCreate(ItemBase):
     # /items POST payload from frontend
@@ -34,3 +34,12 @@ class ItemUpdate(BaseModel):
     rating: Optional[int] = None
     genre: Optional[str] = None
     director: Optional[str] = None
+
+class UserBase(BaseModel):
+    username: str
+    password: str
+
+class UserRead(BaseModel):
+    id: int
+    username: str
+    password: str
