@@ -20,6 +20,7 @@ origins = [
 async def lifespan(app: FastAPI):
     db.init_db()
     print("db start")
+    # models.Base.metadata.create_all(bind=db.engine)
     yield
     print("db stop")
 
@@ -33,7 +34,6 @@ app.add_middleware(
     allow_headers=["*"],          # wszystkie nagłówki
 )
 
-models.Base.metadata.create_all(bind=db.engine)
 
 @app.get("/health")
 def health():

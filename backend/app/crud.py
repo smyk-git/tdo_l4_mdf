@@ -20,7 +20,7 @@ def create_item(db: Session, item_in: schemas.ItemCreate):
 
 def update_item(db: Session, item_id: int, item_in: schemas.ItemUpdate):
     item = db.query(models.Item).filter(models.Item.id == item_id).first()
-    update_data = item_in.dict(exclude_unset=True)
+    update_data = item_in.model_dump(exclude_unset=True)
     for key, value in update_data.items():
         setattr(item, key, value)
     
