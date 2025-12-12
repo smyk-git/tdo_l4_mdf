@@ -5,9 +5,8 @@ from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from sqlalchemy import text
-from starlette.middleware import _MiddlewareFactory
 
-from . import db, models, schemas, crud
+from . import db, schemas, crud
 
 # CORS – pozwalamy na requesty z frontu (Vite)
 origins = [
@@ -20,14 +19,13 @@ origins = [
 async def lifespan(app: FastAPI):
     db.init_db()
     print("db start")
-    # models.Base.metadata.create_all(bind=db.engine)
     yield
     print("db stop")
 
 app = FastAPI(title="FastAPI + React + Postgres demo", lifespan=lifespan)
 
 app.add_middleware(
-    _MiddlewareFactory[CORSMiddleware],
+    CORSMiddleware,
     allow_origins=origins,        # skąd wolno
     allow_credentials=True,
     allow_methods=["*"],          # GET, POST, itd.
