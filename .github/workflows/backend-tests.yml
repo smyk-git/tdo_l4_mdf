@@ -26,6 +26,8 @@ jobs:
           pip install pytest
 
       - name: Run tests
+	env:
+          DATABASE_URL: sqlite:///./test.db
         run: |
           python -m pytest -q
 
