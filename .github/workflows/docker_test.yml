@@ -30,14 +30,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      
-      - name: Load variables from .var
-        run: |
-          set -o allexport
-          source .env
-          set +o allexport
-        shell: bash
-        
       - name: Export env vars to GitHub env
         run: |
           cat .env >> $GITHUB_ENV

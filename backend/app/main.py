@@ -5,6 +5,7 @@ from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from sqlalchemy import text
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from . import db, schemas, crud
 
@@ -24,6 +25,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="FastAPI + React + Postgres demo", lifespan=lifespan)
 
+Instrumentator().instrument(app).expose(app, endpoint="/metrics", include_in_schema=False)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,        # skąd wolno
@@ -31,7 +34,6 @@ app.add_middleware(
     allow_methods=["*"],          # GET, POST, itd.
     allow_headers=["*"],          # wszystkie nagłówki
 )
-
 
 @app.get("/health")
 def health():
