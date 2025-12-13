@@ -34,7 +34,6 @@ function HomePage() {
         <div className="logo" onClick={() => navigate("/")}>
           <img src={logo} alt="logo" />
         </div>
-
         <div className="search_bar">
           <form
             onSubmit={(e) => e.preventDefault()}

@@ -36,7 +36,7 @@ function VideoPosterTile({ number, title, onClick }) {
 const styles = {
   wrapper: {
     position: "relative",
-    width: "10em",
+    width: "11em",
     margin: "0.5em",
     textAlign: "center",
     transition: "transform 0.6s ease",
