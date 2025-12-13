@@ -2,7 +2,6 @@ from dotenv import load_dotenv
 import os
 from logging.config import fileConfig
 from app.db import Base
-import app.models  # Import models to register them with Base
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 

@@ -1,9 +1,8 @@
-from hmac import digest
 
 from pwdlib import PasswordHash
 from sqlalchemy.orm import Session
 
-from . import models, crud
+from . import crud
 
 hasher_instance = PasswordHash.recommended()
 

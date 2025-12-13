@@ -1,6 +1,4 @@
-from pydantic import BaseModel, ConfigDict
 from contextlib import asynccontextmanager
-from typing import Optional
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
