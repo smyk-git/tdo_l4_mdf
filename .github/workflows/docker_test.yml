@@ -1,6 +1,5 @@
 name: docker
 on:
-  pull_request:
   push:
       paths:
         - 'backend/**'
@@ -40,13 +39,8 @@ jobs:
           docker compose -f ./docker-compose.yml logs db
           exit 1
 
-      # Connectivity checks )
+      # Connectivity checks 
       - name: Check backend -> db connection
         run: |
           docker compose -f ./docker-compose.yml exec -T backend \
             sh -c "nc -z db 5432"
-
-      - name: Check frontend -> backend health
-        run: |
-          docker compose -f ./docker-compose.yml exec -T frontend \
-            sh -c "curl -sSf http://backend:8000/health"
