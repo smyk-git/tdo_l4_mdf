@@ -23,7 +23,7 @@ services:
     volumes:
       - ./backend/app:/app/app
       - ./backend/alembic:/app/alembic
-      - ./backend/alembic.ini:/app/alembic.ini  # 👈 ważne!
+      - ./backend/alembic.ini:/app/alembic.ini  
       - ./backend/requirements.txt:/app/requirements.txt
     networks:
       - app-net
@@ -38,7 +38,7 @@ services:
     environment:
       REACT_APP_API_URL: "http://localhost:${BACKEND_PORT}"
     volumes:
-      - ./frontend/src:/app/src          # 👈 hot reload React
+      - ./frontend/src:/app/src          
       - ./frontend/public:/app/public
     networks:
       - app-net
