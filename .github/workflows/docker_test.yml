@@ -31,10 +31,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Export env vars to GitHub env
-        run: |
-          cat .env >> $GITHUB_ENV
-
       # Spin up all containers
       - name: Start docker-compose stack
         run: docker compose -f ./docker-compose.yml up -d
