@@ -3,10 +3,10 @@ on:
   pull_request:
   push:
       paths:
-      - 'backend/Dockerfile'
-      - 'frontend/Dockerfile'
-      - 'docker-compose.yml'
-      - './var/env'
+        - 'backend/**'
+        - 'frontend/**'
+        - '.github/workflows/**'
+        - 'docker/**'
   workflow_dispatch:
 
 jobs:
@@ -24,6 +24,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Start stack and run tests
+        run: docker compose -f ./docker/docker-compose.yml up -d --build
+
       - name: Wait for Postgres
         run: |
           for i in {1..30}; do
