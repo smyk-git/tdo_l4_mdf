@@ -12,33 +12,39 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        service: [db, backend, frontend]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run ${{ matrix.service }} tests
-        uses: adambirds/docker-compose-action@v1.5.0
-        with:
-          compose-file: "./docker/docker-compose.yml"
-          test-container: ${{ matrix.service }}
-          test-command: "npm test"
-
-  connectivity:
-    needs: test
-    runs-on: ubuntu-latest
+    env:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tdo
+      POSTGRES_PORT: "5432"
+      BACKEND_PORT: "8000"
+      FRONTEND_PORT: "3000"
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/tdo
 
     steps:
       - uses: actions/checkout@v4
+      - name: Start stack and run tests
+      - name: Wait for Postgres
+        run: |
+          for i in {1..30}; do
+            if docker compose -f ./docker/docker-compose.yml exec -T db \
+              pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB"; then
+              echo "Postgres is ready"
+              exit 0
+            fi
+            echo "Waiting for Postgres..."
+            sleep 2
+          done
+          docker compose -f ./docker/docker-compose.yml logs db
+          exit 1
 
-      # Spin up all containers
-      - name: Start docker-compose stack
-        run: docker compose -f ./docker-compose.yml up -d
+      # Connectivity checks )
+      - name: Check backend -> db connection
+        run: |
+          docker compose -f ./docker/docker-compose.yml exec -T backend \
+            sh -c "nc -z db 5432"
 
-      # Test DB connection from backend
-      - name: Check backend → db connection
-        run: docker compose -f ./docker-compose.yml exec -T backend \sh -c "nc -z db 5432"
-
-      # Test frontend connection to backend
-      - name: Check frontend → backend connection
-        run: docker compose -f ./docker-compose.yml exec -T frontend \sh -c "curl -sSf http://backend:3000/health"
+      - name: Check frontend -> backend health
+        run: |
+          docker compose -f ./docker/docker-compose.yml exec -T frontend \
+            sh -c "curl -sSf http://backend:8000/health"
