@@ -5,7 +5,14 @@ def get_items(db: Session):
     return db.query(models.Item).all()
 
 def create_item(db: Session, item_in: schemas.ItemCreate):
-    item = models.Item(title=item_in.title, description=item_in.description)
+    item = models.Item(
+        title=item_in.title,
+        description=item_in.description,
+        year=item_in.year,
+        rating=item_in.rating,
+        genre=item_in.genre,
+        director=item_in.director,
+        )
     db.add(item)
     db.commit()
     db.refresh(item)
@@ -13,7 +20,7 @@ def create_item(db: Session, item_in: schemas.ItemCreate):
 
 def update_item(db: Session, item_id: int, item_in: schemas.ItemUpdate):
     item = db.query(models.Item).filter(models.Item.id == item_id).first()
-    update_data = item_in.dict(exclude_unset=True)
+    update_data = item_in.model_dump(exclude_unset=True)
     for key, value in update_data.items():
         setattr(item, key, value)
 
