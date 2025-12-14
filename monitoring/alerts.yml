@@ -1,0 +1,11 @@
+groups:
+  - name: http-alerts
+    rules:
+      - alert: HighRequestRate
+        expr: sum(rate(http_requests_total[1m])) > 1
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High HTTP request rate"
+          description: "Request rate is above 1 req/s for 1 minute."
