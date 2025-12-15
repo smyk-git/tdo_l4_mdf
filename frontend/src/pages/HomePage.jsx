@@ -51,6 +51,9 @@ function HomePage() {
             </button>
           </form>
         </div>
+        <div>
+            <a href="/login">Login</a>
+        </div>
       </div>
 
       {/* MAIN */}

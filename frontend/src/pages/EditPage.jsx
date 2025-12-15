@@ -23,6 +23,7 @@ function EditPage() {
   // 1. Pobierz item z backendu (na razie przez /items i find)  
   useEffect(() => {
     setLoading(true);
+    const token = localStorage.getItem("token");
     fetch(`${backend_url}/items/`)
       .then((res) => res.json())
       .then((items) => {
@@ -54,7 +55,7 @@ function EditPage() {
     try {
       const response = await fetch(`${backend_url}/items/${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify(payload),
       });
       console.log("Response status:", response);

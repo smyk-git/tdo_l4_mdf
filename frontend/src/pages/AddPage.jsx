@@ -19,9 +19,10 @@ function AddPage() {
     e.preventDefault();
     if (!title.trim()) return;
 
+    const token = localStorage.getItem("token");
     fetch(`${backend_url}/items`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",Authorization: `Bearer ${token}` },
       body: JSON.stringify({
         title,
         description,
