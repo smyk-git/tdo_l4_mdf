@@ -10,8 +10,8 @@ from typing import Annotated
 
 from sqlalchemy.orm import Session
 
-from functions import validate_user, create_access_token, get_current_user
-from schemas import Token
+from .functions import validate_user, create_access_token, get_current_user
+from .schemas import Token
 from . import db, schemas, crud
 
 # CORS – pozwalamy na requesty z frontu (Vite)
