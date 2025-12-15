@@ -1,23 +1,17 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordRequestForm
-from sqlalchemy.orm import Session
 from sqlalchemy import text
 from prometheus_fastapi_instrumentator import Instrumentator
 
-from datetime import timedelta, timezone, datetime
+from datetime import timedelta
 from typing import Annotated
 
-import jwt
-from fastapi import Depends, HTTPException, status
-from jwt.exceptions import InvalidTokenError
-from pwdlib import PasswordHash
 from sqlalchemy.orm import Session
 
-from crud import get_user
 from functions import validate_user, create_access_token, get_current_user
-from schemas import TokenData, Token
+from schemas import Token
 from . import db, schemas, crud
 
 # CORS – pozwalamy na requesty z frontu (Vite)
