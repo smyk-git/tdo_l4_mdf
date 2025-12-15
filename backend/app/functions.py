@@ -12,6 +12,7 @@ from .crud import get_user
 from .schemas import TokenData
 from . import db, crud
 
+
 hasher_instance = PasswordHash.recommended()
 
 def pass_to_hash(password):
