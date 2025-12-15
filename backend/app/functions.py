@@ -9,7 +9,7 @@ from pwdlib import PasswordHash
 from sqlalchemy.orm import Session
 
 from crud import get_user
-from schemas import TokenData, Token
+from schemas import TokenData
 from . import db, crud
 
 hasher_instance = PasswordHash.recommended()
