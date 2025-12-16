@@ -49,7 +49,7 @@ def list_items(db_session: Session = Depends(db.get_db)):
     return crud.get_items(db_session)
 
 @app.post("/items", response_model=schemas.ItemRead)
-def create_item(item: schemas.ItemCreate, db_session: Session = Depends(db.get_db),current_user = Depends(get_current_user)):
+def create_item(item: schemas.ItemCreate, db_session: Session = Depends(db.get_db), current_user = Depends(get_current_user)):
     return crud.create_item(db_session, item)
 
 @app.get("/db-check")
