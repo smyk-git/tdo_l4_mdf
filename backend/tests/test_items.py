@@ -6,6 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from app import models
 from app.db import get_db  
 from app.main import app
+from app.functions import get_current_user
 
 
 # 1. Testowa baza – sqlite zamiast Postgresa
@@ -27,8 +28,12 @@ def override_get_db():
         yield db
     finally:
         db.close()
+
+def override_get_current_user():
+    return {"username": "tester","password": "4$oQIVGY2LSmokPaG/m6lnXA$macWl8MvCBpWJoDde6IKwWfgxD3jyTqgeQzATna4Ifk"}
         
 app.dependency_overrides[get_db] = override_get_db
+app.dependency_overrides[get_current_user] = override_get_current_user()
 
 client = TestClient(app)
 
