@@ -20,6 +20,7 @@ function LoginPage() {
                 "Content-Type": "application/x-www-form-urlencoded",
             },
             body: new URLSearchParams({
+				grant_type: "password",
                 username,
                 password,
             }),

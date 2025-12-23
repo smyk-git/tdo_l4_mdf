@@ -30,7 +30,7 @@ def override_get_db():
         db.close()
 
 def override_get_current_user():
-    return {"id": "1","username": "tester","password": "4$oQIVGY2LSmokPaG/m6lnXA$macWl8MvCBpWJoDde6IKwWfgxD3jyTqgeQzATna4Ifk"}
+    return {"id": "1","username": "tester","password": "$argon2id$v=19$m=65536,t=3,p=4$bPYWCy6YSH1tnHy8l1Lddg$rZZ81lC/TC/VgLO1J7lap2nq9oTPqVLijdwaL8DpzWI"}
         
 app.dependency_overrides[get_db] = override_get_db
 app.dependency_overrides[get_current_user] = override_get_current_user

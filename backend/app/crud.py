@@ -37,3 +37,5 @@ def delete_item(db: Session, item_id: int):
 
 def get_user(db: Session,username: str):
     return db.query(models.User).filter(models.User.username == username).first()
+
+#def create_user(b: Session,user_in: schemas.User):
