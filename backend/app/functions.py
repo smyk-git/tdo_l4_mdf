@@ -15,9 +15,7 @@ from .crud import get_user
 from .schemas import TokenData
 from . import db, crud
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-ENV_PATH = os.path.join(BASE_DIR, ".env")
-load_dotenv(ENV_PATH)
+load_dotenv()
 
 hasher_instance = PasswordHash.recommended()
 
@@ -35,10 +33,8 @@ def validate_user(datab: Session,username: str,passw: str):
         return None
     return user
 
-#SECRET_KEY = os.getenv("SECRET_KEY")
-#ALGORITHM = os.getenv("ALGORITHM")
-SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
-ALGORITHM = "HS256"
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 
