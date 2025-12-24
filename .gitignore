@@ -2,4 +2,4 @@ __pycache__/
 *.pyc
 .env
 frontend/src/.vs
-backend/.idea
+backend/app/.idea
