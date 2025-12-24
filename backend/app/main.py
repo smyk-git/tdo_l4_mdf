@@ -78,3 +78,16 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(data={"sub": user.username}, expires_delta=access_token_expires)
     return Token(access_token=access_token, token_type="bearer")
+
+@app.post("/user", response_model=schemas.ItemRead)
+def create_user(user: schemas.UserCreate, db_session: Session = Depends(db.get_db), current_user = Depends(get_current_user)):
+    return crud.create_user(db_session, user)
+
+@app.put("/user/{username}", response_model=schemas.ItemRead)
+def update_item(username: str, user: schemas.UserUpdate, db_session: Session = Depends(db.get_db), current_user = Depends(get_current_user)):
+    return crud.update_user(db_session, username, user)
+
+@app.delete("/user/{username}")
+def delete_item(username: str, db_session: Session = Depends(db.get_db), current_user = Depends(get_current_user)):
+    return crud.delete_user(db_session, username)
+

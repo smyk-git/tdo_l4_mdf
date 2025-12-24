@@ -44,6 +44,13 @@ class UserRead(BaseModel):
     username: str
     password: str
 
+class UserCreate(UserBase):
+    pass # /items POST payload from frontend
+
+class UserUpdate(BaseModel):
+    username: str
+    password: str
+
 class Token(BaseModel):
     access_token: str
     token_type: str

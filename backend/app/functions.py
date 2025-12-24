@@ -18,10 +18,6 @@ from . import db, crud
 load_dotenv()
 
 hasher_instance = PasswordHash.recommended()
-
-def pass_to_hash(password):
-    return hasher_instance.hash(password)
-
 def verify_pass(password, hash_pass):
     return hasher_instance.verify(password, hash_pass)
 
