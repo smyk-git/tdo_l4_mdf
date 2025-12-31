@@ -26,6 +26,11 @@ function HomePage() {
   const filteredItems = items.filter((item) =>
     item.title.toLowerCase().includes(search.toLowerCase())
   );
+  const token = localStorage.getItem("token");
+  const logout = () => {
+	localStorage.removeItem("token");
+	window.location.reload();
+  };
 
   return (
     <div className="mainbody">
@@ -50,6 +55,11 @@ function HomePage() {
               <img src={searchIcon} alt="Search" width="30" height="30"/>
             </button>
           </form>
+        </div>
+        <div>
+            <nav>
+			  {token ? (<a href="#" onClick={logout}>Logout</a>) : (<a href="/login">Login</a>)}
+			</nav>
         </div>
       </div>
 
