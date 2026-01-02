@@ -17,14 +17,19 @@
   *{
     font-family: "Stack Sans Headline", sans-serif;
   }
-  .editor-left-photo button {
+  .option_buttons{
+    display: flex;
+    justify-content: center;
+  }
+  .editor-left-photo button, .universal_button {
     transition: 0.2s ease;
     background-color: transparent;
     font-size: 1.2em;
+    white-space: nowrap;
     color: white;
     font-weight: bold;
-    height: 84px;
-    width: 10vw;
+    height: 64px;
+    width: 180px;
     padding: 0 2em;
     outline: none;
     border: none;
@@ -37,10 +42,11 @@
     transition: 0.2s ease;
     background-color: transparent;
     font-size: 1.2em;
+    white-space: nowrap;
     color: white;
     font-weight: bold;
-    height: 84px;
-    width: 10vw;
+    height: 64px;
+    width: 180px;
     padding: 0 2em;
     outline: none;
     border: none;
@@ -49,7 +55,7 @@
     margin-top: 50px;
   }
 
-  .editor-left-photo button:hover {
+  .editor-left-photo button:hover, .universal_button:hover {
     cursor: pointer;
     opacity: 0.5;
   }
@@ -295,30 +301,38 @@
   *{
     font-family: "Stack Sans Headline", sans-serif;
   }
-  .editor-left-photo button {
+  .editor-left-photo button, .universal_button {
     transition: 0.2s ease;
     background-color: transparent;
-    font-size: 1.2em;
+    font-size: 1em;
+    white-space: nowrap;
     color: white;
     font-weight: bold;
-    height: 84px;
-    width: 40vw;
+    height: 64px;
+    width: 180px;
     padding: 0 2em;
     outline: none;
     border: none;
     border-radius: 4em;
     background: linear-gradient(0deg, rgba(178, 17, 68, 1) 0%, rgba(228, 8, 48, 1) 100%);
-    margin: 20px 0px;
+    
   }
-
+  .editor-left-photo button
+  {
+      margin: 60px 20px;
+  }
+  .universal_button{
+    margin: 10px 20px;
+  }
   .editor-right button {
     transition: 0.2s ease;
     background-color: transparent;
-    font-size: 1.2em;
+    font-size: 1em;
+    white-space: nowrap;
     color: white;
     font-weight: bold;
-    height: 84px;
-    width: 40vw;
+    height: 64px;
+    width: 180px;
     padding: 0 2em;
     outline: none;
     border: none;
@@ -327,7 +341,7 @@
     margin-top: 50px;
   }
 
-  .editor-left-photo button:hover {
+  .editor-left-photo button:hover, .universal_button:hover {
     cursor: pointer;
     opacity: 0.5;
   }
@@ -450,18 +464,24 @@
     top: 0;
     z-index: 1000;
     display: flex;
-    height: 180px;
+    height: 20vh;
     width: 100%;
     justify-content: center;
     align-items: center;
     background: linear-gradient(0deg, rgba(42, 123, 155, 0) 0%, rgba(0, 0, 0, 0.61) 40%, rgba(0, 0, 0, 1) 100%);
-    flex-direction: row;
-    gap: 20px;
-
+    flex-direction: column;
   }
-
+  .option_buttons{
+    width:100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  .search_bar{
+    margin-top:14em;
+  }
   .search_bar form {
-    top: 6em;
+    top: 0em;
     position: relative;
     display: flex;
     padding: 0px;

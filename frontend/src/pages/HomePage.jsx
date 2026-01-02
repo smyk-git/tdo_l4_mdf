@@ -28,8 +28,8 @@ function HomePage() {
   );
   const token = localStorage.getItem("token");
   const logout = () => {
-	localStorage.removeItem("token");
-	window.location.reload();
+    localStorage.removeItem("token");
+    window.location.reload();
   };
 
   return (
@@ -52,14 +52,13 @@ function HomePage() {
               onChange={(e) => setSearch(e.target.value)}
             />
             <button type="submit" className="item-button">
-              <img src={searchIcon} alt="Search" width="30" height="30"/>
+              <img src={searchIcon} alt="Search" width="30" height="30" />
             </button>
           </form>
         </div>
-        <div>
-            <nav>
-			  {token ? (<a href="#" onClick={logout}>Logout</a>) : (<a href="/login">Login</a>)}
-			</nav>
+        <div className="option_buttons">
+            {token ? (<a href="#" onClick={logout}><button type="button" className="universal_button">Logout</button></a>): (<a href="/login"><button type="button" className="universal_button">Login</button></a>)}
+            {token ? (<br></br>) : (<a href="/register"><button type="button" className="universal_button">Register</button></a>)}
         </div>
       </div>
 
@@ -68,10 +67,10 @@ function HomePage() {
         <div className="main_container">
           <div className="movie_container">
             <VideoPosterTile
-                number={0}
-                title="Add"
-                onClick={() => navigate("/add")}
-              />
+              number={0}
+              title="Add"
+              onClick={() => navigate("/add")}
+            />
             {filteredItems.map((item) => (
               <VideoPosterTile
                 key={item.id}

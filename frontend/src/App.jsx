@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import AddPage from "./pages/AddPage";
 import EditPage from "./pages/EditPage";    
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import ProtectedRoute from "./ProtectedPages";
 
 function App() {  
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/add" element={<ProtectedRoute> <AddPage /> </ProtectedRoute>} />
         <Route path="/edit/:id" element={<ProtectedRoute><EditPage /></ProtectedRoute>} />
       </Routes>
