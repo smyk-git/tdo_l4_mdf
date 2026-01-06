@@ -105,4 +105,75 @@ def test_delete_item():
     items = list_resp.json()
     ids = [it["id"] for it in items]
     assert item_id not in ids
+    
+def test_get_items():
+    response = client.get("/items")
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)    
 
+def test_get_health():
+    response = client.get("/health")
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok"}
+    
+def test_list_users_initially_empty():
+    response = client.get("/users")
+    assert response.status_code == 200
+    assert response.json() == []
+
+
+def test_create_user():
+    payload = {
+        "username": "alice",
+        "password": "secret123"
+    }
+
+    response = client.post("/users", json=payload)
+    assert response.status_code == 200
+    data = response.json()
+    print(data)
+    assert data["username"] == payload["username"]
+    assert data["id"] is not None
+
+def test_delete_user():
+    create_payload = {
+        "username": "tom",
+        "password": "pass"
+    }
+    create_resp = client.post("/users", json=create_payload)
+    assert create_resp.status_code == 200
+    assert create_resp.json()["username"] == "tom"
+
+    delete_resp = client.delete("/users/tom")
+    assert delete_resp.status_code == 200
+
+    list_resp = client.get("/users")
+    assert list_resp.status_code == 200
+    users = list_resp.json()
+    usernames = [u["username"] for u in users]
+    assert "tom" not in usernames
+
+def test_login():
+    create_payload = {
+        "username": "jerry",
+        "password": "mypassword"
+    }
+    create_resp = client.post("/users", json=create_payload)
+    assert create_resp.status_code == 200
+
+    login_payload = {
+        "username": "jerry",
+        "password": "mypassword"
+    }
+    login_resp = client.post("/login", data=login_payload)
+    assert login_resp.status_code == 200
+    data = login_resp.json()
+    assert "access_token" in data
+    assert data["token_type"] == "bearer"
+    
+def test_db_check():
+    response = client.get("/db-check")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["status"] == "OK"
+    assert "entities" in data

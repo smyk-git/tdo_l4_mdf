@@ -87,13 +87,10 @@ def list_users(db_session: Session = Depends(db.get_db)):
 def create_user(user: schemas.UserCreate, db_session: Session = Depends(db.get_db), current_user = Depends(get_current_user)):
     return crud.create_user(db_session, user)
 
-@app.put("/users/{username}", response_model=schemas.UserRead)
-def update_user(username: str, user: schemas.UserUpdate, db_session: Session = Depends(db.get_db), current_user = Depends(get_current_user)):
-    return crud.update_user(db_session, username, user)
+# @app.put("/users/{username}", response_model=schemas.UserRead)
+# def update_user(username: str, user: schemas.UserUpdate, db_session: Session = Depends(db.get_db), current_user = Depends(get_current_user)):
+    # return crud.update_user(db_session, username, user)
 
 @app.delete("/users/{username}")
 def delete_user(username: str, db_session: Session = Depends(db.get_db), current_user = Depends(get_current_user)):
     return crud.delete_user(db_session, username)
-
-
-
