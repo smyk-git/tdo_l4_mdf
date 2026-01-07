@@ -19,6 +19,8 @@ jobs:
       BACKEND_PORT: "8000"
       FRONTEND_PORT: "3000"
       DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/tdo
+      SECRET_KEY: "ci-secret"
+      ALGORITHM: "HS256"
 
     steps:
       - uses: actions/checkout@v4
