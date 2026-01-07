@@ -29,8 +29,9 @@ def validate_user(datab: Session,username: str,passw: str):
         return None
     return user
 
-SECRET_KEY = os.getenv("SECRET_KEY")
-ALGORITHM = os.getenv("ALGORITHM")
+SECRET_KEY = os.getenv("SECRET_KEY", "dev_only_secret_change_me")
+ALGORITHM = os.getenv("ALGORITHM", "HS256")
+
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 

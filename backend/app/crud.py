@@ -63,8 +63,8 @@ def update_user(db: Session, username: str, user_in: schemas.UserUpdate):
     return user
 
 def delete_user(db: Session, username: str):
-    item = db.query(models.Item).filter(models.User.username == username).first()
-    db.delete(item)
+    user = db.query(models.User).filter(models.User.username == username).first()
+    db.delete(user)
     db.commit()
     return {"message": "User deleted"}
 
