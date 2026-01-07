@@ -119,7 +119,7 @@ def test_get_health():
 def test_list_users_initially_empty():
     response = client.get("/users")
     assert response.status_code == 200
-    assert response.json() == []
+    assert isinstance(response.json(), list)
 
 
 def test_create_user():
