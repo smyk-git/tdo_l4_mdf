@@ -131,7 +131,6 @@ def test_create_user():
     response = client.post("/users", json=payload)
     assert response.status_code == 200
     data = response.json()
-    print(data)
     assert data["username"] == payload["username"]
     assert data["id"] is not None
 
