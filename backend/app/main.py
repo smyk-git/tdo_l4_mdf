@@ -11,8 +11,14 @@ from typing import Annotated
 from sqlalchemy.orm import Session
 
 from .functions import validate_user, create_access_token, get_current_user
-from .schemas import Token
+from .schemas import Token, UserCreate
 from . import db, schemas, crud
+from .models import User 
+
+from .functions import hasher_instance
+
+
+
 
 # CORS – pozwalamy na requesty z frontu (Vite)
 origins = [
@@ -78,6 +84,23 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(data={"sub": user.username}, expires_delta=access_token_expires)
     return Token(access_token=access_token, token_type="bearer")
+
+# New user registration
+@app.post("/register")
+def register(user: UserCreate, db: Session = Depends(db.get_db)):
+    existing = db.query(User).filter(User.username == user.username).first()
+    if existing:
+        raise HTTPException(status_code=400, detail="User already exists")
+
+    hashed =  hasher_instance.hash(user.password)
+    new_user = User(username=user.username, password=hashed)
+
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+
+    return {"message": "User created"}
+
 
 @app.get("/users", response_model=list[schemas.UserRead])
 def list_users(db_session: Session = Depends(db.get_db)):

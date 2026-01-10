@@ -144,12 +144,6 @@ function EditPage() {
           <div className="editor-left">
             <VideoPosterTile number={item.id} title={title || item.title} />
             <div className="editor-left-photo">
-              <button type="button">
-                <p>CHANGE PHOTO</p>
-              </button>
-              <button type="button">
-                <p>DELETE PHOTO</p>
-              </button>
             </div>
           </div>
 
