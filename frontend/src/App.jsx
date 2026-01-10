@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/register" element={<ProtectedRoute><RegisterPage /></ProtectedRoute>} />
         <Route path="/add" element={<ProtectedRoute> <AddPage /> </ProtectedRoute>} />
         <Route path="/edit/:id" element={<ProtectedRoute><EditPage /></ProtectedRoute>} />
       </Routes>

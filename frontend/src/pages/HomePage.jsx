@@ -58,7 +58,7 @@ function HomePage() {
         </div>
         <div className="option_buttons">
             {token ? (<a href="#" onClick={logout}><button type="button" className="universal_button">Logout</button></a>): (<a href="/login"><button type="button" className="universal_button">Login</button></a>)}
-            {token ? (<br></br>) : (<a href="/register"><button type="button" className="universal_button">Register</button></a>)}
+            {token ? (<a href="/register"><button type="button" className="universal_button">Register</button></a>) : (<br></br>)}
         </div>
       </div>
 

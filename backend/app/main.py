@@ -15,9 +15,8 @@ from .schemas import Token, UserCreate
 from . import db, schemas, crud
 from .models import User 
 
-from pwdlib import PasswordHash
+from .functions import hasher_instance
 
-hasher_instance = PasswordHash.recommended()
 
 
 

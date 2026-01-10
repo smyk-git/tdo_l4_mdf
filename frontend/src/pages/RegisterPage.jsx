@@ -5,11 +5,13 @@ import logo from "../assets/logo/logo.svg";
 function RegisterPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const backend_url = import.meta.env.BACKEND_URL || "http://localhost:8000"; const handleSubmit = (e) => {
         e.preventDefault();
         setError("");
+        if (password !== confirmPassword) { setError("Passwords do not match"); return; }
         fetch(`${backend_url}/register`, {
             method: "POST", headers:
             {
@@ -53,6 +55,17 @@ function RegisterPage() {
                                     placeholder="PASSWORD"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <p style={{ fontSize: "2em", fontWeight: "bold" }}>Repeat Password</p>
+                                <input
+                                    type="password"
+                                    placeholder="REPEAT PASSWORD"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
                                     required
                                 />
                             </div>
