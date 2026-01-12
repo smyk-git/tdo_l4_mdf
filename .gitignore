@@ -4,3 +4,4 @@ __pycache__/
 frontend/src/.vs
 backend/.idea
 backend/app/.idea
+.DS_Store

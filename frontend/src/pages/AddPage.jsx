@@ -58,12 +58,6 @@ function AddPage() {
             {/* Podgląd plakatu – na razie placeholder */}
             <VideoPosterTile number={"NEW"} title={title || "New movie"} />
             <div className="editor-left-photo">
-              <button type="button">
-                <p>CHANGE PHOTO</p>
-              </button>
-              <button type="button">
-                <p>DELETE PHOTO</p>
-              </button>
             </div>
           </div>
 
